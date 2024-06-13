@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code Script</title>
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Gather basic information about the device
+            var deviceInfo = {
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                language: navigator.language
+            };
+ 
+            // Display the device info (you can also send it to a server)
+            alert("Device Info: " + JSON.stringify(deviceInfo));
+            console.log("Device Info: ", deviceInfo);
+ 
+            // Example of sending the device info to a server
+            fetch('https://yourserver.com/device-info', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(deviceInfo)
+            }).then(response => {
+                return response.json();
+            }).then(data => {
+                console.log("Server Response: ", data);
+            }).catch(error => {
+                console.error("Error sending device info: ", error);
+            });
+        });
+</script>
+</head>
+<body>
+<h1>Welcome!</h1>
+<p>If you are seeing this page, the QR code scan was successful.</p>
+</body>
+</html>
